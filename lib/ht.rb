@@ -18,11 +18,13 @@ class HT
       if is_word
         next_string_left = string_left.gsub(possible_word, "")
         other_words = words_from_string(next_string_left)
-        unless other_words
+
+        if  !other_words && next_string_left.empty?
           words << possible_word
           return words
         end
-        if other_words.size > 0
+
+        if !next_string_left.empty? && other_words
           words << possible_word
           string_used += possible_word
           string_left = string_left.gsub(possible_word, "")
